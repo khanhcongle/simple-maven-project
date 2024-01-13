@@ -1,0 +1,4 @@
+﻿parent-project/core/target
+parent-project/service/target
+parent-project/webapp/target
+.vscode/settings.json
