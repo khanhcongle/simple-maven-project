@@ -2,3 +2,4 @@
 parent-project/service/target
 parent-project/webapp/target
 .vscode/settings.json
+parent-project/target/

@@ -13,10 +13,18 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+
     <junit.version>4.11</junit.version>
+    <activej.version>6.0-beta2</activej.version>
   </properties>
+    
+  <modules>
+    <module>core</module>
+    <module>service</module>
+    <module>webapp</module>
+  </modules>
 
   <dependencies>
     <dependency>
@@ -29,12 +37,7 @@
 
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>${junit.version}</version>
-        <scope>test</scope>
-      </dependency>
+
       <dependency>
         <groupId>com.baeldung</groupId>
         <artifactId>core</artifactId>
@@ -49,6 +52,33 @@
         <groupId>com.baeldung</groupId>
         <artifactId>webapp</artifactId>
         <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.activej</groupId>
+        <artifactId>activej-boot</artifactId>
+        <version>${activej.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.activej</groupId>
+        <artifactId>activej-promise</artifactId>
+        <version>${activej.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.activej</groupId>
+        <artifactId>activej-launchers-http</artifactId>
+        <version>${activej.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.activej</groupId>
+        <artifactId>activej-http</artifactId>
+        <version>${activej.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -67,6 +97,10 @@
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
+          <configuration>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
@@ -95,9 +129,15 @@
       </plugins>
     </pluginManagement>
   </build>
-  <modules>
-    <module>core</module>
-    <module>service</module>
-    <module>webapp</module>
-  </modules>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jdepend-maven-plugin</artifactId>
+        <version>2.0</version>
+      </plugin>
+    </plugins>
+  </reporting>
+
 </project>
